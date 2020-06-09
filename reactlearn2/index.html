@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+    
+        class MyRecord extends React.Component {
+            constructor(){
+                super();
+                this.state = {
+                    userinfo: [
+                        {   name: "cris",
+                            total: 1
+                        },
+                        {   name: "stone",
+                            total: 1
+                        },  
+                        {   name: "frank",
+                            total: 1
+                        }
+                    ]}
+            }
+    
+            render(){
+                return(
+                    <div>
+                        <table className="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>name</th>
+                                    <th>total</th>
+                                </tr>    
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.userinfo.map((elements,index) => {
+                                        return(
+                                            <tr key={index}>
+                                                <th>{ elements.name }</th>
+                                                <th>{ elements.total }</th>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                )
+            }
+        }
+    </script>    
+
+    <script type="text/babel">
+        class TextInput extends React.Component {
+
+            constructor(props){
+                super(props);
+                this.state = {
+                    count: 10,
+                    flag: true
+                }
+            }
+
+            sendto = () => {
+                this.setState({
+                    
+                })
+            }
+
+
+            render(){
+                return(
+                    <div className="input-group">
+                        <input type="text" className="form-control" aria-label="..." placeholder="格式：姓名，几手，被谁打光/余码几手" id="ctnt" />
+                        <div className="input-group-btn">
+                            <span className="input-group-btn">
+                                <button className="btn btn-default" type="button" onClick={ this.Sendto }>发送</button>
+                            </span>
+                        </div>
+                    </div>
+                )
+            }
+
+        }
+    </script>
+
+    <script type="text/babel">
+    
+        let vDom = (
+            <div className="container-fluid">
+
+                <ul className="nav nav-tabs">
+                    <li role="presentation" className="active"><a href="#">记录页</a></li>
+                    <li role="presentation"><a href="#">数据汇总</a></li>
+                </ul>
+
+                <div className="panel panel-default">
+                        <div className="panel-heading">记账表格</div>
+
+                        <div className="table-responsive">
+                            <MyRecord />
+                        </div>
+                </div>
+
+                <div><TextInput /></div>
+
+                <div className="panel panel-default">
+                    <div className="panel-heading">
+                        <h3 className="panel-title">拿码记录</h3>
+                    </div>
+                    <div className="panel-body" id="record">
+					    <ol>
+                            <li>大局，1手，开始<h6>11:42pm</h6></li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        )
+        ReactDOM.render(vDom, document.getElementById("root"));
+    </script>
+
+
+
+
+</body>
+</html>
